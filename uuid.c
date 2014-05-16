@@ -39,7 +39,7 @@ static bool _uuid_parse_hex_group (int len, char *grouped, uint8_t *out) {
 
   int i, o;
 
-  for (i = 0; i < 8; i += 2) {
+  for (i = 0; i < len; i += 2) {
     o = _uuid_parse_hex_octed(grouped[i], grouped[i + 1]);
     if (o < 0) {
       return false;
