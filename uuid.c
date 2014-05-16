@@ -20,16 +20,17 @@ static int _uuid_parse_hex_char (char c) {
 
 }
 
-static int _uuid_parse_hex_octed (char h, char l) {
+static bool _uuid_parse_hex_octed (char *in, uint8_t *out) {
 
-  int hi = _uuid_parse_hex_char(h);
-  int li = _uuid_parse_hex_char(l);
+  int hi = _uuid_parse_hex_char(in[0]);
+  int lo = _uuid_parse_hex_char(in[1]);
 
-  if (hi < 0 || li < 0) {
-    return -1;
+  if (hi < 0 || lo < 0) {
+    return false;
   }
 
-  return ((hi << 4) & 0xf0) | (li & 0x0f);
+  *out = ((hi << 4) & 0xf0) | (lo & 0x0f);
+  return true;
 
 }
 
@@ -42,11 +43,8 @@ static bool _uuid_parse_hex_group (int len, char *grouped, uint8_t *out) {
   int i, o;
 
   for (i = 0; i < len; i += 2) {
-    o = _uuid_parse_hex_octed(grouped[i], grouped[i + 1]);
-    if (o < 0) {
+    if (!_uuid_parse_hex_octed(&grouped[i], &out[i / 2])) {
       return false;
-    } else {
-      out[i / 2] = o;
     } 
   }
 
