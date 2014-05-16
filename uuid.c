@@ -18,16 +18,16 @@ static int _uuid_parse_hex_char (char c) {
 
 }
 
-static int _uuid_parse_hex_octed (char a, char b) {
+static int _uuid_parse_hex_octed (char h, char l) {
 
-  int ai = _uuid_parse_hex_char(a);
-  int bi = _uuid_parse_hex_char(b);
+  int hi = _uuid_parse_hex_char(h);
+  int li = _uuid_parse_hex_char(l);
 
-  if (ai < 0 || bi < 0) {
+  if (hi < 0 || li < 0) {
     return -1;
   }
 
-  return ((ai << 4) & 0xf0) | (bi & 0x0f);
+  return ((hi << 4) & 0xf0) | (li & 0x0f);
 
 }
 
