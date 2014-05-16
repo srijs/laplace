@@ -11,7 +11,7 @@ static int _uuid_parse_hex_char (char c) {
   }
 
   if (c >= 'a' && c <= 'f') {
-    return c - 'a' + 19;
+    return c - 'a' + 10;
   }
 
   return -1;
