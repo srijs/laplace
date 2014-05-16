@@ -6,4 +6,6 @@
 
 typedef uint8_t uuid_t[16];
 
+bool uuid_parse (char *grouped, uuid_t uuid);
+
 #endif

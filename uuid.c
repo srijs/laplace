@@ -52,7 +52,7 @@ static bool _uuid_parse_hex_group (int len, char *grouped, uint8_t *out) {
 
 }
 
-bool uuid_parse(char *grouped, uuid_t uuid) {
+bool uuid_parse (char *grouped, uuid_t uuid) {
   
   if (grouped[8]  != '-' || grouped[13] != '-' ||
       grouped[18] != '-' || grouped[23] != '-') {
