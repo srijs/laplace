@@ -5,13 +5,13 @@ TESTS   = tests/uuid.c
 default: laplace
 
 %.o: %.c $(HEADERS)
-	clang -Os -c $< -o $@
+	%(CC) -Os -c $< -o $@
 
 laplace: $(OBJECTS)
-	clang $(OBJECTS) -o $@
+	$(CC) $(OBJECTS) -o $@
 
 test: $(OBJECTS) test.c $(TESTS)
-	clang test.c $(TESTS) $(OBJECTS) -o test
+	$(CC) test.c $(TESTS) $(OBJECTS) -o test
 	./test
 
 clean:
