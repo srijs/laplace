@@ -5,7 +5,7 @@ TESTS   = tests/uuid.c
 default: laplace
 
 %.o: %.c $(HEADERS)
-	%(CC) -Os -c $< -o $@
+	$(CC) -Os -c $< -o $@
 
 laplace: $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@
