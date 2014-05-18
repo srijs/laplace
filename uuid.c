@@ -83,7 +83,7 @@ bool uuid_parse (char *grouped, uuid_t uuid) {
 
 }
 
-int uuid_snprintf (char *restrict buffer, int buf_size, uuid_t uuid) {
+int uuid_snprint (char * buffer, int buf_size, uuid_t uuid) {
 
   return snprintf(buffer, buf_size, "%02x%02x%02x%02x-"
                                     "%02x%02x-%02x%02x-%02x%02x-"

@@ -23,12 +23,12 @@ TEST parse_works_correctly () {
   PASS();
 }
 
-TEST sprintf_works_correctly () {
+TEST snprint_works_correctly () {
   char str[37] = "550e8400-e29b-11d4-a716-446655440000";
   uuid_t uuid;
   uuid_parse(str, uuid);
   char buf[37];
-  uuid_snprintf(buf, 37, uuid);
+  uuid_snprint(buf, 37, uuid);
   ASSERT(0 == strcmp(str, buf));
   PASS();
 }
@@ -37,5 +37,5 @@ SUITE (uuid) {
   RUN_TEST(parse_fails_for_wrong_delimiter);
   RUN_TEST(parse_fails_for_wrong_hex);
   RUN_TEST(parse_works_correctly);
-  RUN_TEST(sprintf_works_correctly);
+  RUN_TEST(snprint_works_correctly);
 }
