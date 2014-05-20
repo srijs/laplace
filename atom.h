@@ -14,4 +14,6 @@ typedef struct atom {
 
 } atom_t;
 
+atom_t atom_new (uuid_t uuid);
+
 #endif
