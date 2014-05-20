@@ -1,15 +1,15 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "uuid.h"
+#include "object.h"
 #include "atom.h"
 
-struct entity {
+typedef struct entity {
 
-  uuid_t uuid;       // this is the primary identifier
+  OBJECT_FIELDS;
 
   struct atom *refs; // array of references to atoms
 
-};
+} entity_t;
 
 #endif

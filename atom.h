@@ -1,18 +1,17 @@
 #ifndef ATOM_H
 #define ATOM_H
 
-#include "uuid.h"
+#include "object.h"
 
-struct atom {
+typedef struct atom {
 
-  uuid_t uuid; // this is the primary identifier
+  OBJECT_FIELDS;
 
   unsigned int refcount; // entity reference count
 
   unsigned int hash_len;  // length of hash data
   char        *hash;      // arbitrary data can be stored here
-  struct atom *hash_next; // next atom in the hash table
 
-};
+} atom_t;
 
 #endif
