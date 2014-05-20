@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 #include "uuid.h"
 
 static int _uuid_parse_hex_char (char c) {
@@ -52,34 +51,41 @@ static bool _uuid_parse_hex_group (int len, char *grouped, uint8_t *out) {
 
 }
 
-bool uuid_parse (char *grouped, uuid_t uuid) {
+uuid_ptr_t uuid_parse (char *grouped, uuid_t uuid) {
   
   if (grouped[8]  != '-' || grouped[13] != '-' ||
       grouped[18] != '-' || grouped[23] != '-') {
-    return false;
+    return NULL;
   }
 
   if (!_uuid_parse_hex_group(8, &grouped[0], &uuid[0])) {
-    return false;
+    return NULL;
   }
  
   if (!_uuid_parse_hex_group(4, &grouped[9], &uuid[4])) {
-    return false;
+    return NULL;
   }
  
   if (!_uuid_parse_hex_group(4, &grouped[14], &uuid[6])) {
-    return false;
+    return NULL;
   }
  
   if (!_uuid_parse_hex_group(4, &grouped[19], &uuid[8])) {
-    return false;
+    return NULL;
   }
  
   if (!_uuid_parse_hex_group(12, &grouped[24], &uuid[10])) {
-    return false;
+    return NULL;
   }
  
-  return true; 
+  return uuid; 
+
+}
+
+bool uuid_eq (uuid_t a, uuid_t b) {
+
+  return 0[(uint64_t *)a] == 0[(uint64_t *)b] &&
+         1[(uint64_t *)a] == 1[(uint64_t *)b];
 
 }
 
