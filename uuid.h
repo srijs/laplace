@@ -11,6 +11,8 @@ uuid_ptr_t uuid_parse (char *grouped, uuid_t uuid);
 
 bool uuid_eq (uuid_t a, uuid_t b);
 
+uuid_ptr_t uuid_copy (uuid_t dst, uuid_t src);
+
 int uuid_snprint (char *buffer, int buf_size, uuid_t uuid);
 
 #endif

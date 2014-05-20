@@ -42,6 +42,13 @@ TEST eq_returns_false_for_null_uuids () {
   PASS();
 }
 
+TEST copy_works_correctly () {
+  uuid_t a, b;
+  ASSERT(uuid_eq(uuid_parse("550e8400-e29b-11d4-a716-446655440000", a),
+                 uuid_copy(b, a)));
+  PASS();
+}
+
 TEST snprint_works_correctly () {
   char str[37] = "550e8400-e29b-11d4-a716-446655440000";
   uuid_t uuid;
@@ -59,5 +66,6 @@ SUITE (uuid) {
   RUN_TEST(eq_returns_true_for_equal_uuids);
   RUN_TEST(eq_returns_false_for_unequal_uuids);
   RUN_TEST(eq_returns_false_for_null_uuids);
+  RUN_TEST(copy_works_correctly);
   RUN_TEST(snprint_works_correctly);
 }

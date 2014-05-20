@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "uuid.h"
 
+#define UUID_HI64(uuid) (0[(uint64_t *)uuid])
+#define UUID_LO64(uuid) (1[(uint64_t *)uuid])
+
 static int _uuid_parse_hex_char (char c) {
 
   if (c >= '0' && c <= '9') {
@@ -85,8 +88,16 @@ uuid_ptr_t uuid_parse (char *grouped, uuid_t uuid) {
 bool uuid_eq (uuid_t a, uuid_t b) {
 
   return a && b &&
-    0[(uint64_t *)a] == 0[(uint64_t *)b] &&
-    1[(uint64_t *)a] == 1[(uint64_t *)b];
+    UUID_HI64(a) == UUID_HI64(b) &&
+    UUID_LO64(a) == UUID_LO64(b);
+
+}
+
+uuid_ptr_t uuid_copy (uuid_t dst, uuid_t src) {
+
+  UUID_HI64(dst) = UUID_HI64(src);
+  UUID_LO64(dst) = UUID_LO64(src);
+  return dst;
 
 }
 
