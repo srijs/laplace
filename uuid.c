@@ -84,8 +84,9 @@ uuid_ptr_t uuid_parse (char *grouped, uuid_t uuid) {
 
 bool uuid_eq (uuid_t a, uuid_t b) {
 
-  return 0[(uint64_t *)a] == 0[(uint64_t *)b] &&
-         1[(uint64_t *)a] == 1[(uint64_t *)b];
+  return a && b &&
+    0[(uint64_t *)a] == 0[(uint64_t *)b] &&
+    1[(uint64_t *)a] == 1[(uint64_t *)b];
 
 }
 
